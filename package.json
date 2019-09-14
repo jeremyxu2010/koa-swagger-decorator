@@ -1,7 +1,7 @@
 {
   "name": "koa-swagger-decorator",
-  "version": "1.5.16",
-  "description": "using decorator to automatically generate swagger doc for koa-router",
+  "version": "2.0.0",
+  "description": "using decorator to automatically generate swagger doc for koa-router@v2.0",
   "main": "dist/index.js",
   "dependencies": {
     "@types/globby": "^8.0.0",
@@ -48,7 +48,6 @@
     "nodemon": "^1.18.3",
     "nyc": "^12.0.2",
     "power-assert": "^1.6.0",
-    "pre-commit": "^1.2.2",
     "prettier-eslint-cli": "^4.7.1",
     "sha1": "^1.1.1",
     "supertest": "^2.0.1",
@@ -67,18 +66,10 @@
     "test": "./node_modules/mocha/bin/mocha -r babel-core/register test/**/*.js --bail -t 2000000",
     "prepublish": "npm run build",
     "lint": "eslint .",
-    "format": "prettier-eslint --write \"**/*.js\"",
     "debug": "babel-node example/main --inspect-brk --nolazy example/main",
     "cov": "nyc --reporter=lcov npm run test",
-    "add": "git add .",
-    "precommit-msg": "echo 'Pre-commit code formating...' && exit 0",
     "tslint": "tslint -c tslint.json -p tsconfig.json"
   },
-  "pre-commit": [
-    "precommit-msg",
-    "format",
-    "add"
-  ],
   "keywords": [
     "decorator",
     "swagger",
