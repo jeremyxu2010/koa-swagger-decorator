@@ -3,6 +3,9 @@
   "version": "1.6.1",
   "description": "using decorator to automatically generate swagger doc for koa-router",
   "main": "dist/index.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "dependencies": {
     "@types/globby": "^8.0.0",
     "@types/koa-router": "^7.0.31",
