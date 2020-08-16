@@ -9,6 +9,7 @@ export interface IResponses {
 declare const responses: (responses?: IResponses) => (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
 declare const desc: _.CurriedFunction2<string, string | any[], (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor>;
 declare const description: (t2: string | any[]) => (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
+declare const produces: (t2: string | any[]) => (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
 declare const summary: (t2: string | any[]) => (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
 declare const tags: (t2: string | any[]) => (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
 declare const params: _.CurriedFunction2<string, {
@@ -27,6 +28,7 @@ declare const formData: (t2: {
     [name: string]: any;
 }) => (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
 declare const tagsAll: (items: string | string[]) => (target: any) => void;
+declare const producesAll: (items: string[]) => (target: any) => void;
 declare const responsesAll: (responses?: IResponses) => (target: any) => void;
 declare const middlewaresAll: (items: Function | Function[]) => (target: any) => void;
 declare const securityAll: (security: any) => (target: any) => void;
@@ -58,9 +60,11 @@ declare const Doc: {
     formData: (t2: {
         [name: string]: any;
     }) => (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
+    produces: (t2: string | any[]) => (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
     responses: (responses?: IResponses) => (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
     deprecated: (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
     tagsAll: (items: string | string[]) => (target: any) => void;
+    producesAll: (items: string[]) => (target: any) => void;
     responsesAll: (responses?: IResponses) => (target: any) => void;
     middlewaresAll: (items: Function | Function[]) => (target: any) => void;
     deprecatedAll: (target: any) => void;
@@ -71,4 +75,4 @@ declare const Doc: {
     prefix: (prefix: string) => (target: any) => void;
 };
 export default Doc;
-export { request, summary, params, desc, description, query, path, body, tags, middlewares, security, formData, responses, deprecated, tagsAll, responsesAll, middlewaresAll, securityAll, deprecatedAll, queryAll, prefix };
+export { request, summary, params, desc, description, query, path, body, tags, middlewares, security, formData, produces, responses, deprecated, tagsAll, producesAll, responsesAll, middlewaresAll, securityAll, deprecatedAll, queryAll, prefix };

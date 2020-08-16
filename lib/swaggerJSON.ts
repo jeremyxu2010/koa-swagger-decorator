@@ -3,7 +3,7 @@ import { getPath } from './utils';
 /**
  * build swagger json from apiObjects
  */
-const swaggerJSON = (options: {[name: string]: any} = {}, apiObjects: any) => {
+const swaggerJSON = (options: { [name: string]: any } = {}, apiObjects: any) => {
   const {
     title,
     description,
@@ -23,6 +23,7 @@ const swaggerJSON = (options: {[name: string]: any} = {}, apiObjects: any) => {
     path = getPath(prefix, value.prefix ? `${value.prefix}${path}` : path); // 根据前缀补全path
     const summary = value.summary || '';
     const description = value.description || summary;
+    const produces = value.produces || ['*/*'];
     const responses = value.responses || {
       200: { description: 'success' }
     };
@@ -51,6 +52,7 @@ const swaggerJSON = (options: {[name: string]: any} = {}, apiObjects: any) => {
       summary,
       description,
       parameters,
+      produces,
       responses,
       tags,
       security,

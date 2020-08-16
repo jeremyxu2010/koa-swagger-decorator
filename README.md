@@ -233,12 +233,14 @@ export default class Test {
 - security
 - summary
 - description
+- produces
 - responses
 - deprecated
 
 #### class annotations
 
 - tagsAll
+- producesAll
 - responsesAll
 - middlewaresAll
 - securityAll

@@ -1,5 +1,5 @@
-import _ from "ramda";
 import is from "is-type-of";
+import _ from "ramda";
 import swaggerObject from "./swaggerObject";
 
 const _desc = (type: string, text: string | any[]) => (
@@ -110,6 +110,8 @@ const desc = _.curry(_desc);
 // description and summary
 const description = desc("description");
 
+const produces = desc("produces");
+
 const summary = desc("summary");
 
 const tags = desc("tags");
@@ -134,6 +136,11 @@ const formData = params("formData");
 const tagsAll = (items: string[] | string) => (target: any) => {
   const tags = is.array(items) ? items : [items];
   swaggerObject.addMulti(target, { tags });
+};
+
+const producesAll = (items: string[]) => (target: any) => {
+  const produces = items;
+  swaggerObject.addMulti(target, { produces });
 };
 
 const responsesAll = (responses: IResponses = defaultResp) => (target: any) => {
@@ -188,9 +195,11 @@ const Doc = {
   middlewares,
   security,
   formData,
+  produces,
   responses,
   deprecated,
   tagsAll,
+  producesAll,
   responsesAll,
   middlewaresAll,
   deprecatedAll,
@@ -214,9 +223,11 @@ export {
   middlewares,
   security,
   formData,
+  produces,
   responses,
   deprecated,
   tagsAll,
+  producesAll,
   responsesAll,
   middlewaresAll,
   securityAll,

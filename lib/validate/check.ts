@@ -45,6 +45,12 @@ const cString = (val: any, expect: Expect) => {
     : { is: false };
 };
 
+const cInt = (val: any, expect: Expect) => {
+  if (!cRequired(val, expect).is) return { is: false };
+  if (expect.enum && !cEnum(parseInt(val, 10), expect).is) return { is: false };
+  return isNaN(parseInt(val, 10)) || val === '' ? { is: false } : { is: true, val: parseInt(val, 10) };
+};
+
 const cNum = (val: any, expect: Expect) => {
   if (!cRequired(val, expect).is) return { is: false };
   if (expect.enum && !cEnum(Number(val), expect).is) return { is: false };
@@ -133,6 +139,7 @@ const cArray = (input: any, expect: Expect) => {
     const cond = _.cond([
       [_.equals('string'), check(is.string)],
       [_.equals('boolean'), check(is.boolean)],
+      [_.equals('integer'), check(is.int)],
       [_.equals('number'), check(is.number)],
       [_.equals('object'), check(is.object)],
       [_.equals('array'), check(is.array)],
@@ -152,6 +159,7 @@ const check = (input: any, expect: Expect) => {
   const cond = _.cond([
     [_.equals('string'), () => cString(input, expect)],
     [_.equals('boolean'), () => cBool(input, expect)],
+    [_.equals('integer'), () => cInt(input, expect)],
     [_.equals('number'), () => cNum(input, expect)],
     [_.equals('object'), () => cObject(input, expect)],
     [_.equals('array'), () => cArray(input, expect)],
